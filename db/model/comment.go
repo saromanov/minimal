@@ -8,6 +8,8 @@ import (
 
 // Comment provides comment body
 type Comment struct {
+	// Id provides id of comment
+	Id uuid.UUID `json:"id"`
 	// Body provides body for comment
 	Body string `json:"body"`
 	// Created provides creating time for comment
@@ -16,4 +18,6 @@ type Comment struct {
 	AuthorID uuid.UUID `json:"id"`
 	// mentions provides definitions of mentions for comment
 	Mentions []uuid.UUID `json:"mentions"`
+	// ReplyTo provides reply to comment
+	ReplyTo uuid.UUID `json:"id"`
 }
