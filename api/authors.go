@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -19,7 +20,7 @@ func CreateAuthor(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(author)
 	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
+		badRequest(w, fmt.Sprintf("unable to unmarshal Author struct: %v", err), "unable to create author")
 		return
 	}
 }
