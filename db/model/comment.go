@@ -15,9 +15,11 @@ type Comment struct {
 	// Created provides creating time for comment
 	CreatedAt time.Time `json:"createdAt"`
 	// AuthorID provides author of comment
-	AuthorID uuid.UUID `json:"id"`
+	AuthorID uuid.UUID `json:"authorId"`
 	// mentions provides definitions of mentions for comment
 	Mentions []uuid.UUID `json:"mentions"`
 	// ReplyTo provides reply to comment
 	ReplyTo uuid.UUID `json:"id"`
+	// PostID defines target post on comment
+	PostID int64 `json:"postId"`
 }
