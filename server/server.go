@@ -16,8 +16,7 @@ var (
 // InitServer provides init of minimal server
 func InitServer() {
 	p := pat.New()
-
-	p.Get(authorsPath, api.CreateAuthor)
+	p.Post(authorsPath, api.CreateAuthor)
 
 	handler := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
