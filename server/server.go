@@ -2,10 +2,10 @@ package server
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/gorilla/pat"
 	"github.com/rs/cors"
+	"github.com/saromanov/minimal/api"
 )
 
 var (
@@ -13,10 +13,11 @@ var (
 	commentsPath = "/comments"
 )
 
+// InitServer provides init of minimal server
 func InitServer() {
 	p := pat.New()
 
-	p.Get(authorsPath, CreateAuthor)
+	p.Get(authorsPath, api.CreateAuthor)
 
 	handler := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
@@ -26,7 +27,7 @@ func InitServer() {
 		Debug:            true,
 	}).Handler(p)
 
-	if err := http.ListenAndServe(os.Getenv("MICRO_MUX_ADDRESS"), handler); err != nil {
+	if err := http.ListenAndServe(":8080", handler); err != nil {
 		panic(err)
 	}
 }
